@@ -1,0 +1,6 @@
+# Subtribe App - Allow indexing for job pages
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://app.thesubtribe.com/sitemap.xml
