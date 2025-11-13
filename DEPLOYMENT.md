@@ -160,7 +160,7 @@ document.cookie =
 NEXT_PUBLIC_API_URL=https://subtribe-ats-api-dev-189393113297.asia-south1.run.app
 
 # Base URL (GCP auto-generated URL - NO custom domain for dev)
-NEXT_PUBLIC_BASE_URL=https://subtribe-frontend-dev-123456789.asia-south1.run.app
+NEXT_PUBLIC_BASE_URL=https://subtribe-app-dev-123456789.asia-south1.run.app
 
 # Next.js Build Settings
 NODE_ENV=development
@@ -232,7 +232,7 @@ Currently implemented in `src/lib/env.ts` (optional Zod validation). Consider ad
 ### Development Environment (CONFIRMED)
 
 - **NO custom domains for development**
-- Frontend: GCP auto-generated URL (e.g., `subtribe-frontend-dev-123456.asia-south1.run.app`)
+- Frontend: GCP auto-generated URL (e.g., `subtribe-app-dev-123456.asia-south1.run.app`)
 - Backend: GCP auto-generated URL (e.g., `subtribe-ats-api-dev-189393113297.asia-south1.run.app`)
 - Clear separation between dev and prod environments
 
@@ -269,12 +269,12 @@ if (isDashboard && pathname === "/") {
 ```bash
 # Frontend domains (both point to same service)
 gcloud run domain-mappings create \
-  --service subtribe-frontend-production \
+  --service subtribe-app-production \
   --domain thesubtribe.com \
   --region asia-south1
 
 gcloud run domain-mappings create \
-  --service subtribe-frontend-production \
+  --service subtribe-app-production \
   --domain dashboard.thesubtribe.com \
   --region asia-south1
 ```
@@ -314,13 +314,13 @@ gcloud run domain-mappings create \
 ```
 subtribe (GCP Project ID: YOUR_PROJECT_ID)
 ├── Cloud Run Services:
-│   ├── subtribe-frontend-dev        # Development (GCP auto-generated URL)
-│   ├── subtribe-frontend-prod       # Production (custom domains)
+│   ├── subtribe-app-dev        # Development (GCP auto-generated URL)
+│   ├── subtribe-app-prod       # Production (custom domains)
 │   ├── subtribe-ats-api-dev         # Backend dev (already exists)
 │   └── subtribe-ats-api-prod        # Backend prod (TO BE CREATED)
 ├── Artifact Registry:
 │   └── subtribe-ats-backend/        # Existing repo
-│       └── subtribe-frontend/       # New repo to create
+│       └── subtribe-app/       # New repo to create
 ├── Domains:
 │   ├── thesubtribe.com              # Frontend prod
 │   ├── dashboard.thesubtribe.com    # Frontend prod subdomain
@@ -627,10 +627,10 @@ Cloud Run automatically forwards stdout/stderr to Cloud Logging. Our JSON-format
 
 ```bash
 # View all logs
-gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=subtribe-frontend-prod" --limit 50 --format json
+gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=subtribe-app-prod" --limit 50 --format json
 
 # View only errors
-gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=subtribe-frontend-prod AND jsonPayload.level=error" --limit 20
+gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=subtribe-app-prod AND jsonPayload.level=error" --limit 20
 
 # Search by request ID
 gcloud logging read "resource.type=cloud_run_revision AND jsonPayload.requestId=YOUR_REQUEST_ID"
@@ -639,7 +639,7 @@ gcloud logging read "resource.type=cloud_run_revision AND jsonPayload.requestId=
 **Log Query in Google Cloud Console**:
 
 1. Go to Cloud Console → Logging → Logs Explorer
-2. Select resource: Cloud Run Revision → subtribe-frontend-prod
+2. Select resource: Cloud Run Revision → subtribe-app-prod
 3. Filter by severity: ERROR, INFO, etc.
 4. Search by fields: `jsonPayload.requestId`, `jsonPayload.userId`, etc.
 
@@ -886,12 +886,12 @@ CONTEXT.md
 
 ```bash
 # Build Docker image
-docker build -t subtribe-frontend:latest .
+docker build -t subtribe-app:latest .
 
 # Run container locally
 docker run -p 3000:8080 \
   -e NEXT_PUBLIC_API_URL=https://subtribe-ats-api-dev-189393113297.asia-south1.run.app \
-  subtribe-frontend:latest
+  subtribe-app:latest
 
 # Test at http://localhost:3000
 ```
@@ -939,7 +939,7 @@ permissions:
 env:
   PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
   REGION: asia-south1
-  IMAGE_NAME: subtribe-frontend
+  IMAGE_NAME: subtribe-app
 
 jobs:
   # ============================================================================
@@ -1021,21 +1021,21 @@ jobs:
           docker build \
             --build-arg NEXT_PUBLIC_API_URL=${{ vars.API_URL_DEVELOPMENT }} \
             --build-arg NEXT_PUBLIC_BASE_URL=${{ vars.BASE_URL_DEVELOPMENT }} \
-            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME}}/subtribe-frontend-dev:${{ github.sha }} \
-            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-dev:latest \
+            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME}}/subtribe-app-dev:${{ github.sha }} \
+            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-dev:latest \
             .
 
       - name: Push Docker image
         run: |
           echo "📦 Pushing Docker image to Development Artifact Registry..."
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-dev:${{ github.sha }}
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-dev:latest
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-dev:${{ github.sha }}
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-dev:latest
 
       - name: Deploy to Cloud Run (Development)
         run: |
           echo "🚀 Deploying to DEVELOPMENT Cloud Run..."
-          gcloud run deploy subtribe-frontend-dev \
-            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-dev:${{ github.sha }} \
+          gcloud run deploy subtribe-app-dev \
+            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-dev:${{ github.sha }} \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --platform=managed \
@@ -1049,7 +1049,7 @@ jobs:
 
       - name: Get service URL
         run: |
-          SERVICE_URL=$(gcloud run services describe subtribe-frontend-dev \
+          SERVICE_URL=$(gcloud run services describe subtribe-app-dev \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --format='value(status.url)')
@@ -1059,7 +1059,7 @@ jobs:
 
       - name: Smoke test
         run: |
-          SERVICE_URL=$(gcloud run services describe subtribe-frontend-dev \
+          SERVICE_URL=$(gcloud run services describe subtribe-app-dev \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --format='value(status.url)')
@@ -1093,7 +1093,7 @@ permissions:
 env:
   PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
   REGION: asia-south1
-  IMAGE_NAME: subtribe-frontend
+  IMAGE_NAME: subtribe-app
 
 jobs:
   deploy-prod:
@@ -1148,25 +1148,25 @@ jobs:
           docker build \
             --build-arg NEXT_PUBLIC_API_URL=https://api.thesubtribe.com \
             --build-arg NEXT_PUBLIC_BASE_URL=https://thesubtribe.com \
-            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:$VERSION_TAG \
-            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:latest \
-            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:${{ github.sha }} \
+            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:$VERSION_TAG \
+            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:latest \
+            --tag ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:${{ github.sha }} \
             .
 
       - name: Push Docker image
         run: |
           VERSION_TAG="${{ steps.tag_version.outputs.new_tag }}"
           echo "📦 Pushing Docker image to Production Artifact Registry..."
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:$VERSION_TAG
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:latest
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:${{ github.sha }}
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:$VERSION_TAG
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:latest
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:${{ github.sha }}
 
       - name: Deploy to Cloud Run (Production)
         run: |
           VERSION_TAG="${{ steps.tag_version.outputs.new_tag }}"
           echo "🚀 Deploying version $VERSION_TAG to PRODUCTION Cloud Run..."
-          gcloud run deploy subtribe-frontend-prod \
-            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-frontend-prod:$VERSION_TAG \
+          gcloud run deploy subtribe-app-prod \
+            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}/subtribe-app-prod:$VERSION_TAG \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --platform=managed \
@@ -1182,7 +1182,7 @@ jobs:
       - name: Get service URL
         run: |
           VERSION_TAG="${{ steps.tag_version.outputs.new_tag }}"
-          SERVICE_URL=$(gcloud run services describe subtribe-frontend-prod \
+          SERVICE_URL=$(gcloud run services describe subtribe-app-prod \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --format='value(status.url)')
@@ -1195,7 +1195,7 @@ jobs:
         run: |
           echo "🔍 Running smoke test on production..."
           # Test auto-generated URL
-          SERVICE_URL=$(gcloud run services describe subtribe-frontend-prod \
+          SERVICE_URL=$(gcloud run services describe subtribe-app-prod \
             --region=${{ env.REGION }} \
             --project=${{ env.PROJECT_ID }} \
             --format='value(status.url)')
@@ -1591,18 +1591,18 @@ git commit -m "test: Verify pre-commit hook"
     ```bash
     # Production
     gcloud run domain-mappings create \
-      --service subtribe-frontend-production \
+      --service subtribe-app-production \
       --domain thesubtribe.com \
       --region asia-south1
 
     gcloud run domain-mappings create \
-      --service subtribe-frontend-production \
+      --service subtribe-app-production \
       --domain dashboard.thesubtribe.com \
       --region asia-south1
 
     # Development
     gcloud run domain-mappings create \
-      --service subtribe-frontend-development \
+      --service subtribe-app-development \
       --domain dev.thesubtribe.com \
       --region asia-south1
     ```
@@ -1677,10 +1677,10 @@ gcloud logging read "resource.type=cloud_run_revision AND jsonPayload.requestId=
 
 ```bash
 # List revisions
-gcloud run revisions list --service=subtribe-frontend-production --region=asia-south1
+gcloud run revisions list --service=subtribe-app-production --region=asia-south1
 
 # Rollback to previous revision
-gcloud run services update-traffic subtribe-frontend-production \
+gcloud run services update-traffic subtribe-app-production \
   --to-revisions=REVISION_NAME=100 \
   --region=asia-south1
 ```
@@ -2008,8 +2008,8 @@ npm run build                  # Production build
 ### Docker Commands
 
 ```bash
-docker build -t subtribe-frontend .
-docker run -p 3000:8080 -e NEXT_PUBLIC_API_URL=URL subtribe-frontend
+docker build -t subtribe-app .
+docker run -p 3000:8080 -e NEXT_PUBLIC_API_URL=URL subtribe-app
 docker logs CONTAINER_ID
 ```
 
@@ -2017,16 +2017,16 @@ docker logs CONTAINER_ID
 
 ```bash
 # Manual deployment (if not using GitHub Actions)
-gcloud run deploy subtribe-frontend-production \
+gcloud run deploy subtribe-app-production \
   --image IMAGE_URL \
   --region asia-south1 \
   --allow-unauthenticated
 
 # View service details
-gcloud run services describe subtribe-frontend-production --region asia-south1
+gcloud run services describe subtribe-app-production --region asia-south1
 
 # Stream logs
-gcloud run services logs tail subtribe-frontend-production --region asia-south1
+gcloud run services logs tail subtribe-app-production --region asia-south1
 ```
 
 ---
