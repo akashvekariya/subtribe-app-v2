@@ -1,14 +1,11 @@
-name: Deploy to Production (Manual)
+name: Deploy to Production
 
-# ONLY manual trigger (no automatic deployment to Production)
-# Requires typing "deploy-to-production" to confirm deployment
+# Automatic deployment to Production on merges to main branch
 on:
-  workflow_dispatch:
-    inputs:
-      confirm:
-        description: 'Type "deploy-to-production" to confirm'
-        required: true
-        default: ""
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual triggering if needed
 
 # Required for semantic versioning (create tags and releases)
 permissions:
@@ -18,8 +15,8 @@ env:
   # GCP Configuration
   PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
   REGION: asia-south1 # Mumbai region
-  SERVICE_NAME: subtribe-frontend-prod
-  IMAGE_NAME: subtribe-frontend
+  SERVICE_NAME: subtribe-app-prod
+  IMAGE_NAME: subtribe-app
 
 jobs:
   # ============================================================================
@@ -82,7 +79,7 @@ jobs:
           echo "   - Type checking ✓"
 
   # ============================================================================
-  # Job 2: Deploy to Production (manual trigger only, after lint-test succeeds)
+  # Job 2: Deploy to Production (on merge to main, after lint-test succeeds)
   # ============================================================================
   deploy-prod:
     name: Build & Deploy to Cloud Run (Production)
@@ -90,8 +87,6 @@ jobs:
     needs: lint-test # Wait for lint-test to pass
     # Use GitHub Environment for environment-specific secrets/variables
     environment: Production
-    # Safety check: Only deploy if user typed confirmation
-    if: github.event.inputs.confirm == 'deploy-to-production'
 
     steps:
       # Step 1: Checkout code
@@ -170,7 +165,7 @@ jobs:
             --project=${{ env.PROJECT_ID }} \
             --platform=managed \
             --allow-unauthenticated \
-            --set-env-vars="NODE_ENV=Production,NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }},NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}" \
+            --set-env-vars="NODE_ENV=production,NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }},NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}" \
             --memory=512Mi \
             --cpu=1 \
             --timeout=60s \
