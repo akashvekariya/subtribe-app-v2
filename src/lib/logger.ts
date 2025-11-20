@@ -114,6 +114,6 @@ export class Logger {
 
 // Default logger instance
 export const logger = new Logger({
-  service: "subtribe-frontend",
+  service: "subtribe-app",
   environment: process.env.NODE_ENV || "development",
 });
