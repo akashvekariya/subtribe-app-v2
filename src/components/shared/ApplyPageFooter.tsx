@@ -88,7 +88,7 @@ export function ApplyPageFooter() {
           {/* Links and Social */}
           <div className="pt-4 flex flex-col items-center gap-4">
             {/* Footer Links */}
-            <div className="flex items-center gap-1 text-xs">
+            <div className="flex items-center flex-wrap justify-center gap-x-1 gap-y-1 text-xs">
               <a
                 href="/privacy-policy"
                 target="_blank"
@@ -96,7 +96,7 @@ export function ApplyPageFooter() {
                 className="hover:underline transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
               >
-                Privacy Policy
+                Privacy
               </a>
               <span
                 style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
@@ -110,7 +110,35 @@ export function ApplyPageFooter() {
                 className="hover:underline transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
               >
-                Terms and Conditions
+                Terms
+              </a>
+              <span
+                style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
+              >
+                •
+              </span>
+              <a
+                href="/data-processing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline transition-colors"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                Data Processing
+              </a>
+              <span
+                style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
+              >
+                •
+              </span>
+              <a
+                href="/cookie-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline transition-colors"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                Cookies
               </a>
             </div>
 

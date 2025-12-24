@@ -1142,15 +1142,36 @@ export default function ApplyJobPage() {
                           fontSize: "var(--input-font-size)",
                         }}
                       >
-                        By submitting the application, you are agreeing to the{" "}
+                        By submitting this application, I agree to the{" "}
                         <a
-                          href="#"
+                          href="/terms-and-conditions"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 transition-opacity"
                           style={{ color: "var(--color-primary)" }}
                         >
-                          Terms and Conditions
+                          Terms & Conditions
+                        </a>{" "}
+                        and{" "}
+                        <a
+                          href="/privacy-policy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-80 transition-opacity"
+                          style={{ color: "var(--color-primary)" }}
+                        >
+                          Privacy Policy
+                        </a>
+                        , and consent to the collection and processing of my
+                        personal data as described in the{" "}
+                        <a
+                          href="/data-processing"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-80 transition-opacity"
+                          style={{ color: "var(--color-primary)" }}
+                        >
+                          Data Processing Policy
                         </a>
                         .
                       </label>
