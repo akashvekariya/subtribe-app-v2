@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { MarkdownRenderer } from "@/components/shared/MarkdownRenderer";
-import { ApplyPageFooter } from "@/components/shared/ApplyPageFooter";
+import { MinimalFooter } from "@/components/shared/MinimalFooter";
 import {
   DocumentArrowUpIcon,
   CheckCircleIcon,
@@ -1144,7 +1144,7 @@ export default function ApplyJobPage() {
                       >
                         By submitting this application, I agree to the{" "}
                         <a
-                          href="/terms-and-conditions"
+                          href="/terms"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 transition-opacity"
@@ -1154,7 +1154,7 @@ export default function ApplyJobPage() {
                         </a>{" "}
                         and{" "}
                         <a
-                          href="/privacy-policy"
+                          href="/privacy"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 transition-opacity"
@@ -1163,17 +1163,7 @@ export default function ApplyJobPage() {
                           Privacy Policy
                         </a>
                         , and consent to the collection and processing of my
-                        personal data as described in the{" "}
-                        <a
-                          href="/data-processing"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline hover:opacity-80 transition-opacity"
-                          style={{ color: "var(--color-primary)" }}
-                        >
-                          Data Processing Policy
-                        </a>
-                        .
+                        personal data as described therein.
                       </label>
                     </div>
                     {errors.terms_accepted && (
@@ -1274,7 +1264,7 @@ export default function ApplyJobPage() {
         )}
 
         {/* Footer */}
-        <ApplyPageFooter />
+        <MinimalFooter />
       </div>
     </div>
   );

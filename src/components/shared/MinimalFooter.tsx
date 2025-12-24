@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/Button";
 
-export function ApplyPageFooter() {
+export function MinimalFooter() {
   return (
     <footer className="mt-12 mb-8">
       <div className="relative">
@@ -90,7 +90,7 @@ export function ApplyPageFooter() {
             {/* Footer Links */}
             <div className="flex items-center flex-wrap justify-center gap-x-1 gap-y-1 text-xs">
               <a
-                href="/privacy-policy"
+                href="/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline transition-colors"
@@ -104,7 +104,7 @@ export function ApplyPageFooter() {
                 •
               </span>
               <a
-                href="/terms-and-conditions"
+                href="/terms"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline transition-colors"
@@ -118,21 +118,7 @@ export function ApplyPageFooter() {
                 •
               </span>
               <a
-                href="/data-processing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline transition-colors"
-                style={{ color: "var(--color-text-secondary)" }}
-              >
-                Data Processing
-              </a>
-              <span
-                style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
-              >
-                •
-              </span>
-              <a
-                href="/cookie-policy"
+                href="/cookies"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline transition-colors"

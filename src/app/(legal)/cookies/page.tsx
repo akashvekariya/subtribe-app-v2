@@ -11,7 +11,7 @@ export default function CookiePolicyPage() {
     <article>
       <h1>Cookie Policy</h1>
       <p className="text-sm text-gray-500 mb-8">
-        Last updated: December 24, 2024
+        Last updated: December 24, 2025
       </p>
 
       <section>
@@ -41,111 +41,30 @@ export default function CookiePolicyPage() {
         <h3>3.1 Essential Cookies</h3>
         <p>
           These cookies are necessary for the website to function properly. They
-          cannot be disabled.
+          enable core functionality such as authentication and security. These
+          cookies cannot be disabled.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Cookie Name</th>
-              <th>Purpose</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <code>access_token</code>
-              </td>
-              <td>Authentication session</td>
-              <td>30 days</td>
-            </tr>
-            <tr>
-              <td>
-                <code>csrf_token</code>
-              </td>
-              <td>Security protection</td>
-              <td>Session</td>
-            </tr>
-          </tbody>
-        </table>
 
         <h3>3.2 Functional Cookies</h3>
-        <p>These cookies enable enhanced functionality and personalization.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Cookie Name</th>
-              <th>Purpose</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <code>theme</code>
-              </td>
-              <td>Stores theme preference</td>
-              <td>1 year</td>
-            </tr>
-            <tr>
-              <td>
-                <code>locale</code>
-              </td>
-              <td>Language preference</td>
-              <td>1 year</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>
+          These cookies enable enhanced functionality and personalization, such
+          as remembering your preferences and settings.
+        </p>
 
         <h3>3.3 Analytics Cookies</h3>
         <p>
           These cookies help us understand how visitors interact with our
-          website.
+          website, allowing us to improve our services.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>Cookie Name</th>
-              <th>Provider</th>
-              <th>Purpose</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <code>_ga</code>
-              </td>
-              <td>Google Analytics</td>
-              <td>Distinguishes users</td>
-              <td>2 years</td>
-            </tr>
-            <tr>
-              <td>
-                <code>_gid</code>
-              </td>
-              <td>Google Analytics</td>
-              <td>Distinguishes users</td>
-              <td>24 hours</td>
-            </tr>
-          </tbody>
-        </table>
       </section>
 
       <section>
         <h2>4. Third-Party Cookies</h2>
-        <p>Some third-party services we use may set their own cookies:</p>
-        <ul>
-          <li>
-            <strong>Google Analytics:</strong> Web analytics service
-          </li>
-          <li>
-            <strong>Google Cloud Storage:</strong> File storage for resumes
-          </li>
-        </ul>
         <p>
-          We do not have control over third-party cookies. Please refer to each
-          provider&apos;s privacy policy for more information.
+          Some third-party services we use may set their own cookies for
+          analytics and functionality purposes. We do not have control over
+          third-party cookies. Please refer to each provider&apos;s privacy
+          policy for more information.
         </p>
       </section>
 
@@ -193,19 +112,11 @@ export default function CookiePolicyPage() {
           </li>
         </ul>
 
-        <h3>5.2 Opt-Out Links</h3>
-        <p>You can opt out of analytics cookies:</p>
-        <ul>
-          <li>
-            <a
-              href="https://tools.google.com/dlpage/gaoptout"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Analytics Opt-Out Browser Add-on
-            </a>
-          </li>
-        </ul>
+        <h3>5.2 Opt-Out</h3>
+        <p>
+          You can opt out of analytics cookies through your browser settings or
+          by using opt-out tools provided by analytics service providers.
+        </p>
 
         <div className="p-4 rounded-lg info-box">
           <p className="!mb-0">
@@ -259,7 +170,7 @@ export default function CookiePolicyPage() {
         <p>
           If you have any questions about our use of cookies, please contact us
           at{" "}
-          <a href="mailto:privacy@thesubtribe.com">privacy@thesubtribe.com</a>
+          <a href="mailto:contact@thesubtribe.com">contact@thesubtribe.com</a>
         </p>
       </section>
     </article>

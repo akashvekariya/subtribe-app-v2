@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MinimalFooter } from "@/components/shared/MinimalFooter";
 import "./legal.css";
 
 export default function LegalLayout({
@@ -47,48 +48,8 @@ export default function LegalLayout({
           {children}
         </div>
 
-        {/* Footer Links */}
-        <div
-          className="mt-8 pt-8 border-t"
-          style={{ borderColor: "var(--color-border)" }}
-        >
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <Link
-              href="/privacy-policy"
-              className="hover:underline transition-colors"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms-and-conditions"
-              className="hover:underline transition-colors"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
-              Terms & Conditions
-            </Link>
-            <Link
-              href="/data-processing"
-              className="hover:underline transition-colors"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
-              Data Processing
-            </Link>
-            <Link
-              href="/cookie-policy"
-              className="hover:underline transition-colors"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
-              Cookie Policy
-            </Link>
-          </div>
-          <p
-            className="text-center text-xs mt-4"
-            style={{ color: "var(--color-text-secondary)", opacity: 0.7 }}
-          >
-            © {new Date().getFullYear()} Subtribe. All rights reserved.
-          </p>
-        </div>
+        {/* Footer */}
+        <MinimalFooter />
       </div>
     </div>
   );

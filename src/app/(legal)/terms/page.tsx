@@ -10,16 +10,19 @@ export default function TermsAndConditionsPage() {
     <article>
       <h1>Terms & Conditions</h1>
       <p className="text-sm text-gray-500 mb-8">
-        Last updated: December 24, 2024
+        Last updated: December 24, 2025
       </p>
 
       <section>
         <h2>1. Agreement to Terms</h2>
         <p>
-          By accessing or using Subtribe&apos;s applicant tracking system
-          (&quot;Service&quot;), you agree to be bound by these Terms and
-          Conditions. If you disagree with any part of these terms, you may not
-          access the Service.
+          By accessing or using Subtribe&apos;s platform (&quot;Service&quot;),
+          you agree to be bound by these Terms and Conditions. If you disagree
+          with any part of these terms, you may not access the Service.
+        </p>
+        <p>
+          You must be at least 18 years of age to use this Service. By using the
+          Service, you represent that you are at least 18 years old.
         </p>
       </section>
 
@@ -126,8 +129,8 @@ export default function TermsAndConditionsPage() {
         <h2>7. Privacy</h2>
         <p>
           Your use of the Service is also governed by our{" "}
-          <a href="/privacy-policy">Privacy Policy</a>, which is incorporated
-          into these Terms by reference. Please review our Privacy Policy to
+          <a href="/privacy">Privacy Policy</a>, which is incorporated into
+          these Terms by reference. Please review our Privacy Policy to
           understand our data collection and processing practices.
         </p>
       </section>
@@ -186,12 +189,23 @@ export default function TermsAndConditionsPage() {
       </section>
 
       <section>
-        <h2>11. Governing Law</h2>
+        <h2>11. Governing Law and Dispute Resolution</h2>
         <p>
           These Terms shall be governed by and construed in accordance with the
-          laws of India, without regard to its conflict of law provisions. Any
-          disputes shall be subject to the exclusive jurisdiction of the courts
-          in Mumbai, India.
+          laws of India, without regard to its conflict of law provisions.
+        </p>
+        <p>
+          Any dispute arising out of or in connection with these Terms shall
+          first be attempted to be resolved through good-faith negotiation. If
+          the dispute cannot be resolved within 30 days, it shall be referred to
+          and finally resolved by arbitration in accordance with the Arbitration
+          and Conciliation Act, 1996. The seat of arbitration shall be Surat,
+          Gujarat, India. The arbitration shall be conducted in English.
+        </p>
+        <p>
+          For users in the United States, you agree to resolve any disputes
+          through binding arbitration rather than in court, except for claims
+          that may be brought in small claims court.
         </p>
       </section>
 
@@ -219,7 +233,7 @@ export default function TermsAndConditionsPage() {
         <ul>
           <li>
             Email:{" "}
-            <a href="mailto:legal@thesubtribe.com">legal@thesubtribe.com</a>
+            <a href="mailto:contact@thesubtribe.com">contact@thesubtribe.com</a>
           </li>
           <li>
             Website:{" "}
