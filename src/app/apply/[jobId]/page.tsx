@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { Select } from "@/components/ui/Select";
 import { MarkdownRenderer } from "@/components/shared/MarkdownRenderer";
-import { ApplyPageFooter } from "@/components/shared/ApplyPageFooter";
+import { MinimalFooter } from "@/components/shared/MinimalFooter";
 import {
   DocumentArrowUpIcon,
   CheckCircleIcon,
@@ -1142,17 +1142,28 @@ export default function ApplyJobPage() {
                           fontSize: "var(--input-font-size)",
                         }}
                       >
-                        By submitting the application, you are agreeing to the{" "}
+                        By submitting this application, I agree to the{" "}
                         <a
-                          href="#"
+                          href="/terms"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 transition-opacity"
                           style={{ color: "var(--color-primary)" }}
                         >
-                          Terms and Conditions
+                          Terms & Conditions
+                        </a>{" "}
+                        and{" "}
+                        <a
+                          href="/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-80 transition-opacity"
+                          style={{ color: "var(--color-primary)" }}
+                        >
+                          Privacy Policy
                         </a>
-                        .
+                        , and consent to the collection and processing of my
+                        personal data as described therein.
                       </label>
                     </div>
                     {errors.terms_accepted && (
@@ -1253,7 +1264,7 @@ export default function ApplyJobPage() {
         )}
 
         {/* Footer */}
-        <ApplyPageFooter />
+        <MinimalFooter />
       </div>
     </div>
   );

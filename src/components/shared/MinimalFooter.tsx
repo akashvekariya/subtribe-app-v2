@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/Button";
 
-export function ApplyPageFooter() {
+export function MinimalFooter() {
   return (
     <footer className="mt-12 mb-8">
       <div className="relative">
@@ -88,15 +88,15 @@ export function ApplyPageFooter() {
           {/* Links and Social */}
           <div className="pt-4 flex flex-col items-center gap-4">
             {/* Footer Links */}
-            <div className="flex items-center gap-1 text-xs">
+            <div className="flex items-center flex-wrap justify-center gap-x-1 gap-y-1 text-xs">
               <a
-                href="/privacy-policy"
+                href="/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
               >
-                Privacy Policy
+                Privacy
               </a>
               <span
                 style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
@@ -104,13 +104,27 @@ export function ApplyPageFooter() {
                 •
               </span>
               <a
-                href="/terms-and-conditions"
+                href="/terms"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline transition-colors"
                 style={{ color: "var(--color-text-secondary)" }}
               >
-                Terms and Conditions
+                Terms
+              </a>
+              <span
+                style={{ color: "var(--color-text-secondary)", opacity: 0.5 }}
+              >
+                •
+              </span>
+              <a
+                href="/cookies"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline transition-colors"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                Cookies
               </a>
             </div>
 
