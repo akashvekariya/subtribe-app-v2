@@ -170,8 +170,12 @@ export default function ApplyJobPage() {
       setSubmitted(true);
 
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch {
-      showToast.error("Failed to submit application. Please try again.");
+    } catch (error) {
+      const message =
+        error instanceof Error && error.message
+          ? error.message
+          : "Failed to submit application. Please try again.";
+      showToast.error(message);
     } finally {
       setIsSubmitting(false);
     }
