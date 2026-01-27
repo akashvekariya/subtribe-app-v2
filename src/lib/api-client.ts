@@ -260,7 +260,7 @@ export const applicationsAPI = {
     slug: string,
     formData: FormData
   ): Promise<{ id: string; message: string }> {
-    const url = `${API_BASE_URL}/public/jobs/${slug}/apply`;
+    const url = `${API_BASE_URL}/api/v1/jobs/${slug}/apply`;
 
     const response = await fetch(url, {
       method: "POST",
